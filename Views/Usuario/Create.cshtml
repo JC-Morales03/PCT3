@@ -1,0 +1,108 @@
+
+
+@{
+    ViewData["Title"] = "Formulario de Usuario";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .alert {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        p {
+            text-align: center;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>REGISTRAR USUARIOS</h1>
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div id="successMessage" class="alert alert-success" role="alert">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        <form asp-action="Create" method="post">
+            <div class="form-group">
+                <label for="email">CORREO ELECTRÓNICO:</label>
+                <input type="text" id="email" name="email" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="firstName">PRIMER NOMBRE:</label>
+                <input type="text" id="firstName" name="firstName" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="lastName">SEGUNDO NOMBRE:</label>
+                <input type="text" id="lastName" name="lastName" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="profilePicture">FOTO DEL PERFIL:</label>
+                <input type="text" id="profilePicture" name="profilePicture" class="form-control">
+            </div>
+            <p>--</p>
+            <button type="submit" class="btn">REGISTRAR</button>
+        </form>
+    </div>
+</body>
+</html>
