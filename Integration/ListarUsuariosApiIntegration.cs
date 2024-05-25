@@ -5,17 +5,6 @@ using System.Threading.Tasks;
 using PCT3.Integration.dto;
 
 
-
-class ApiResponse
-{
-    public int Page { get; set; }
-    public int PerPage { get; set; }
-    public int Total { get; set; }
-    public int TotalPages { get; set; }
-    public List<Usuario> Data { get; set; }
-    public Support Support { get; set; }
-}
-
 class Support
 {
     public string Url { get; set; }
@@ -61,5 +50,16 @@ namespace pc3.Integration
             return listado;
 
         }
+
+        class ApiResponse
+        {
+            public int Page { get; set; }
+            public int PerPage { get; set; }
+            public int Total { get; set; }
+            public int TotalPages { get; set; }
+            public List<Usuario> Data { get; set; }
+            public Support Support { get; set; }
+        }
+
     }
 }
