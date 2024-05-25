@@ -20,8 +20,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<ListarUsuariosApiIntegration, ListarUsuariosApiIntegration>();
-builder.Services.AddScoped<ListarUsuariosApiIntegration>();
-builder.Services.AddScoped<ListarAUsuarioApiIntegration>();
+builder.Services.AddScoped<ListarAUsuarioApiIntegration, ListarAUsuarioApiIntegration>();
+builder.Services.AddScoped<CrearUsuarioApiIntegration, CrearUsuarioApiIntegration>();
 
 var app = builder.Build();
 

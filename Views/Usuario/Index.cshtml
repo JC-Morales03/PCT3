@@ -4,39 +4,106 @@
     ViewData["Title"] = "Usuarios";
 }
 
-<h1>LISTA DE USUARIOS</h1>
+<a href="@Url.Action("Create", "Usuario")" class="btn btn-primary">Crear usuario</a>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Correo: </th>
-            <th>Primer Nombre Name</th>
-            <th>Segundo Nombre</th>
-            <th>Foto de perfil: </th>
-            <th>Vista del perfil: </th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model != null && Model.Count > 0)
-        {
-            foreach (var user in Model)
-            {
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        .img-thumbnail {
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            padding: 3px;
+            width: 50px;
+            height: 50px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 5px 10px;
+            font-size: 14px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 3px;
+            text-decoration: none;
+        }
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>LISTA DE USUARIOS</h1>
+
+        <table>
+            <thead>
                 <tr>
-                    <td>@user.Id</td>
-                    <td>@user.Email</td>
-                    <td>@user.Nombre</td>
-                    <td>@user.Apellido</td>
-                    <td><img src="@user.Avatar" alt="Avatar" style="width:50px;height:50px;" /></td>
-                    <td><a href="@Url.Action("Perfil", new { Id = user.Id })">Ver perfil</a></td>
+                    <th>ID</th>
+                    <th>CORREO</th>
+                    <th>PRIMER NOMBRE</th>
+                    <th>SEGUNDO NOMBRE</th>
+                    <th>FOTO DEL PERFIL</th>
+                    <th>VISTA DEL PERFIL</th>
                 </tr>
-            }
-        }
-        else
-        {
-            <tr>
-                <td colspan="5" class="text-center">No se encontraron usuarios.</td>
-            </tr>
-        }
-    </tbody>
-</table>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0)
+                {
+                    foreach (var user in Model)
+                    {
+                        <tr>
+                            <td>@user.Id</td>
+                            <td>@user.Email</td>
+                            <td>@user.Nombre</td>
+                            <td>@user.Apellido</td>
+                            <td><img src="@user.Avatar" alt="Avatar" class="img-thumbnail" /></td>
+                            <td><a href="@Url.Action("Perfil", new { Id = user.Id })" class="btn">VISUALIZAR PERFIL</a></td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" class="text-center">No se encontraron usuarios.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
