@@ -1,0 +1,40 @@
+@model List<PCT3.Integration.dto.Usuario>
+
+@{
+    ViewData["Title"] = "Usuarios";
+}
+
+<h1>LISTA DE USUARIOS</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Correo: </th>
+            <th>Primer Nombre Name</th>
+            <th>Segundo Nombre</th>
+            <th>Foto de perfil: </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Email</td>
+                    <td>@user.Nombre</td>
+                    <td>@user.Apellido</td>
+                    <td><img src="@user.Avatar" alt="Avatar" style="width:50px;height:50px;" /></td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">No se encontraron usuarios.</td>
+            </tr>
+        }
+    </tbody>
+</table>
