@@ -14,6 +14,7 @@
             <th>Primer Nombre Name</th>
             <th>Segundo Nombre</th>
             <th>Foto de perfil: </th>
+            <th>Vista del perfil: </th>
         </tr>
     </thead>
     <tbody>
@@ -27,6 +28,7 @@
                     <td>@user.Nombre</td>
                     <td>@user.Apellido</td>
                     <td><img src="@user.Avatar" alt="Avatar" style="width:50px;height:50px;" /></td>
+                    <td><a href="@Url.Action("Perfil", new { Id = user.Id })">Ver perfil</a></td>
                 </tr>
             }
         }

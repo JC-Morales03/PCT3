@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using pc3.Integration;
 using PCT3.Integration;
 using PCT3.Integration.dto;
 
@@ -15,20 +14,31 @@ namespace PCT3.Controllers
     {
         private readonly ILogger<UsuarioController> _logger;
         private readonly ListarUsuariosApiIntegration _listUsers;
+        private readonly ListarAUsuarioApiIntegration _unUser;
 
         public UsuarioController(ILogger<UsuarioController> logger,
-        ListarUsuariosApiIntegration listUsers)
+        ListarUsuariosApiIntegration listusers, ListarAUsuarioApiIntegration aUser)
         {
             _logger = logger;
-            _listUsers = listUsers;
+            _listUsers = listusers;
+            _unUser = aUser;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            List<Usuario> users = await _listUsers.GetAllUser();
+            List<Usuario> users = await _listUsers.GetUser();
             return View(users);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Perfil(int Id)
+        {
+            Usuario user = await _unUser.GetUser(Id);
+            return View(user);
+        }
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -7,21 +7,21 @@ using PCT3.Integration.dto;
 
 namespace PCT3.Integration
 {
-    public class ListarUnUsuarioApiIntegration
+    public class ListarAUsuarioApiIntegration
     {
-        private readonly ILogger<ListarUnUsuarioApiIntegration> _logger;
+        private readonly ILogger<ListarAUsuarioApiIntegration> _logger;
 
         private const string API_URL = "https://reqres.in/api/users/";
         private readonly HttpClient httpClient;
 
-        public ListarUnUsuarioApiIntegration(ILogger<ListarUnUsuarioApiIntegration> logger)
+        public ListarAUsuarioApiIntegration(ILogger<ListarAUsuarioApiIntegration> logger)
         {
             _logger = logger;
             httpClient = new HttpClient();
 
         }
 
-        public async Task<Usuario> GetAllUser(int Id)
+        public async Task<Usuario> GetUser(int Id)
         {
 
             string requestUrl = $"{API_URL}{Id}";
@@ -31,7 +31,10 @@ namespace PCT3.Integration
                 HttpResponseMessage response = await httpClient.GetAsync(requestUrl);
                 if (response.IsSuccessStatusCode)
                 {
-
+                    var apiResponse = await response.Content.ReadFromJsonAsync<ApiResponse>();
+                    if (apiResponse != null){
+                        usuario = apiResponse.Data ?? new Usuario();
+                    }
                 }
             }
             catch(Exception ex){
@@ -40,5 +43,11 @@ namespace PCT3.Integration
             return usuario;
 
         }
+
+        class ApiResponse{
+            public Usuario Data { get; set;}
+            public Support Support { get; set;}
+        }
+
     }
 }

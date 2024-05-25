@@ -4,25 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using PCT3.Integration.dto;
 
-
-
-class ApiResponse
-{
-    public int Page { get; set; }
-    public int PerPage { get; set; }
-    public int Total { get; set; }
-    public int TotalPages { get; set; }
-    public List<Usuario> Data { get; set; }
-    public Support Support { get; set; }
-}
-
-class Support
-{
-    public string Url { get; set; }
-    public string Text { get; set; }
-}
-
-namespace pc3.Integration
+namespace PCT3.Integration
 {
     public class ListarUsuariosApiIntegration
     {
@@ -38,7 +20,7 @@ namespace pc3.Integration
 
         }
 
-        public async Task<List<Usuario>> GetAllUser()
+        public async Task<List<Usuario>> GetUser()
         {
 
             string requestUrl = API_URL;
@@ -61,5 +43,16 @@ namespace pc3.Integration
             return listado;
 
         }
+
+        class ApiResponse
+        {
+            public int Page { get; set; }
+            public int PerPage { get; set; }
+            public int Total { get; set; }
+            public int TotalPages { get; set; }
+            public List<Usuario> Data { get; set; }
+            public Support Support { get; set; }
+        }
+
     }
 }
