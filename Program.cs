@@ -1,9 +1,13 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using pc3.Integration;
 using PCT3.Data;
+using PCT3.Integration;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllersWithViews();
+
+
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -16,6 +20,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<ListarUsuariosApiIntegration, ListarUsuariosApiIntegration>();
+builder.Services.AddScoped<ListarUsuariosApiIntegration>();
+builder.Services.AddScoped<ListarAUsuarioApiIntegration>();
 
 var app = builder.Build();
 
@@ -44,3 +50,5 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
+

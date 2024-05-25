@@ -4,14 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using PCT3.Integration.dto;
 
-
-class Support
-{
-    public string Url { get; set; }
-    public string Text { get; set; }
-}
-
-namespace pc3.Integration
+namespace PCT3.Integration
 {
     public class ListarUsuariosApiIntegration
     {
@@ -27,7 +20,7 @@ namespace pc3.Integration
 
         }
 
-        public async Task<List<Usuario>> GetAllUser()
+        public async Task<List<Usuario>> GetUser()
         {
 
             string requestUrl = API_URL;
